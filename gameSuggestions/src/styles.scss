@@ -1,0 +1,62 @@
+/* You can add global styles to this file, and also import other style files */
+@import 'styles/variables'; // Adjust the path as needed
+
+html * {
+  font-family: "Montserrat", sans-serif;
+}
+
+body {
+  background-color: var(--background-color);
+  display: flex;
+  justify-content: center;
+}
+
+h1, h2, h3, h4, h5, h6 {
+  color: var(--headline-color);
+  font-weight: bold;
+}
+
+p {
+  color: var(--text-color);
+}
+
+a {
+  color: var(--primary-color);
+}
+
+.basic-container {
+  display: inline-flex;
+  flex-direction: column;
+  justify-content: space-around;
+  align-items: center;
+  margin-top: 2rem;
+  background-color: (var(--alternate-background-color));
+  border-radius: 0.5rem;
+  padding: 2rem;
+}
+
+h1 {
+  font-size: 2.5rem;
+}
+
+h2 {
+  font-size: 2rem;
+}
+
+h3 {
+  font-size: 1.75rem;
+}
+
+h4 {
+  font-size: 1.5rem;
+}
+
+h5 {
+  font-size: 1.25rem;
+}
+
+h6 {
+  font-size: 1.125rem;
+}
+
+
