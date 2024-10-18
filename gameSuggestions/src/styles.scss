@@ -9,7 +9,14 @@ body {
   background-color: var(--background-color);
   display: flex;
   justify-content: center;
+
+  > * {
+    max-width: 66%;
+    margin: 0 auto;
+  }
+
 }
+
 
 h1, h2, h3, h4, h5, h6 {
   color: var(--headline-color);
@@ -27,12 +34,12 @@ a {
 .basic-container {
   display: inline-flex;
   flex-direction: column;
-  justify-content: space-around;
+  justify-content: center;
   align-items: center;
-  margin-top: 2rem;
+  margin-top: 1.5rem;
   background-color: (var(--alternate-background-color));
   border-radius: 0.5rem;
-  padding: 2rem;
+  padding: 0.5rem 2rem 1rem 2rem;
 }
 
 h1 {
@@ -57,6 +64,14 @@ h5 {
 
 h6 {
   font-size: 1.125rem;
+}
+
+.bottom-buttons {
+  margin-top: 2rem;
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  width: 100%;
 }
 
 

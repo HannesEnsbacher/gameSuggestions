@@ -1,1 +1,50 @@
-<p>game-selection works!</p>
+<h2>Select games that you played before</h2>
+
+<p>Provide how much time you or your group spent on the game. <br>
+  Also include games where not all members participated but consider that in the time estimate.</p>
+
+<div class="search-bar">
+  <!--  <app-search-bar
+      [placeholder]="'Search for games'"
+      (search)="onSearch($event)">
+    </app-search-bar>-->
+  <p>Here we are going to have a search bar to filter the games.</p>
+  <app-button
+    label="View Selected Games"
+    variant="secondary"
+    size="small"
+    (click)="onViewSelected($event)">
+  </app-button>
+</div>
+
+<div class="gamecards-container">
+
+  <app-game-card
+    class="game-card"
+    *ngFor="let game of games"
+    [game]="game"
+    [primaryButtonLabel]="'Select'"
+    [secondaryButtonLabel]="'Details'"
+    [onPrimaryButton]="onSelectGame"
+    [onSecondaryButton]="onViewDetails">
+  </app-game-card>
+
+
+</div>
+
+<div class="bottom-buttons">
+  <app-button
+    label="Previous Step"
+    variant="secondary"
+    size="medium"
+    (click)="onBack($event)">
+  </app-button>
+
+  <app-button
+    label="Next Step"
+    variant="primary"
+    size="medium"
+    (click)="onNext($event)">
+  </app-button>
+</div>
+
