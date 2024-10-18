@@ -18,6 +18,7 @@ export class ButtonComponent {
   @Input() size: 'small' | 'medium' | 'large' = 'large'; // Button size
   @Input({transform: booleanAttribute}) disabled: boolean = false; // Disabled state
   @Input({transform: booleanAttribute}) loading: boolean = false; // Show loading spinner
+  @Input() customClass: string = ""; // Custom CSS class
 
   handleClick(event: Event) {
     if (this.disabled || this.loading) {

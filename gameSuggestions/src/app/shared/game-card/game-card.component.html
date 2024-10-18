@@ -1,0 +1,29 @@
+<div class="game-card">
+  <img ngSrc="{{ game.img }}" [alt]="game.title" class="game-image" width="150" height="225">
+  <div class="game-card-info">
+    <h5 class="game-title">{{ game.title }}</h5>
+
+    <div class="game-card-buttons">
+      <app-button
+        label="{{ primaryButtonLabel }}"
+        variant="primary"
+        size="medium"
+        class="game-card-primary-button"
+        customClass="no-side-padding-button"
+        (click)="onPrimaryButton()">{{ primaryButtonLabel }}
+      </app-button>
+
+      <app-button
+        label="{{ secondaryButtonLabel }}"
+        variant="primary"
+        size="medium"
+        class="game-card-secondary-button"
+        customClass="no-side-padding-button"
+        (click)="onSecondaryButton()">{{ secondaryButtonLabel }}
+      </app-button>
+    </div>
+  </div>
+
+</div>
+
+

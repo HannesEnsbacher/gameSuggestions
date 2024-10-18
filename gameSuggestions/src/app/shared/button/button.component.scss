@@ -1,5 +1,4 @@
 
-
 .btn {
   padding: 1rem 2rem;
   border: none;
@@ -10,19 +9,19 @@
   align-items: center;
   justify-content: center;
   border-radius: 0.25rem;
+  width: 100%;
   box-shadow: 0 4px 4px rgba(0, 0, 0, 0.25);
-
 
   &.btn-primary {
     background-color: var(--primary-color);
     color: var(--button-text-color);
-}
+  }
 
   &.btn-secondary {
     background-color: var(--alternate-background-color-2);
     border: var(--button-text-color) 1px solid;
     color: var(--button-text-color);
-}
+  }
 
   &.btn-tertiary {
     background-color: var(--secondary-color);
@@ -32,27 +31,32 @@
   &.btn-danger {
     background-color: var(--alert-color);
     color: var(--button-text-color);
-}
+  }
 
   &.btn-small {
     font-size: 1rem;
     padding: 0.75rem 1.5rem;
-}
+  }
 
   &.btn-medium {
     font-size: 1.25rem;
     padding: 1rem 2rem;
-}
+  }
 
   &.btn-large {
     font-size: 1.5rem;
     padding: 1.5rem 3rem;
-}
+  }
 
   &:disabled {
     opacity: 0.65;
     cursor: not-allowed;
-}
+  }
+
+  &.no-side-padding-button {
+    padding-left: 0;
+    padding-right: 0;
+  }
 
   .spinner {
     width: 1rem;
@@ -61,14 +65,14 @@
     border-top: 2px solid white;
     border-radius: 50%;
     animation: spin 1s linear infinite;
-}
+  }
 
   @keyframes spin {
-  0% {
-  transform: rotate(0deg);
-}
-  100% {
-  transform: rotate(360deg);
-}
-}
+    0% {
+      transform: rotate(0deg);
+    }
+    100% {
+      transform: rotate(360deg);
+    }
+  }
 }
