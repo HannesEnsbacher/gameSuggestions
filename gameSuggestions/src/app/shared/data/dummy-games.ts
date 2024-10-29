@@ -3,7 +3,7 @@ import { Game } from '../types/game.model';
 export const DUMMY_GAMES: Game[] = [
   {
     id: 1,
-    title: 'The Legend of Zelda: Breath of the Wild but with a very long title for a game',
+    title: 'The Legend of Zelda: Breath of the Wild but with a very long title for a game awd iubna iubawiudiua biuwbd iubawubd iuabw iubdaiu wadawdibauw biuabw diubaiuw biudb aiuwiu bduabw ',
     description: 'An open-world adventure game set in the kingdom of Hyrule.',
     genre: ['Adventure', 'Action'],
     releaseDate: new Date('2017-03-03'),

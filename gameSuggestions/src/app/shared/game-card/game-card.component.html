@@ -13,7 +13,7 @@
         size="medium"
         class="game-card-details-button"
         customClasses="no-side-padding-button no-top-padding-button no-bottom-padding-button"
-        *ngIf="true"
+        *ngIf="false"
         (click)="onDetailsButton()">Details
       </app-button>
 
@@ -23,9 +23,66 @@
         size="medium"
         class="game-card-select-button"
         customClasses="no-side-padding-button no-top-padding-button no-bottom-padding-button"
-        *ngIf="selectable"
+        *ngIf="false"
         (click)="onSelectButton()">Select
       </app-button>
+      <div class="select-icons">
+        <button class="icon-button" [class.selected]="selectedIntensity === 'low'" (click)="selectIntensity('low')">
+          <svg xmlns="http://www.w3.org/2000/svg" width="100%" height="100%" viewBox="0 0 24 24" fill="none"
+               stroke-width="2"
+               stroke-linecap="round" stroke-linejoin="round" class="clock-icon clock-icon-small">
+            <circle cx="12" cy="12" r="10"></circle>
+            <polyline points="12 6 12 12 16 14"></polyline>
+          </svg>
+        </button>
+        <button class="icon-button" [class.selected]="selectedIntensity === 'mid'" (click)="selectIntensity('mid')">
+          <svg xmlns="http://www.w3.org/2000/svg" width="100%" height="100%" viewBox="0 0 66 44" fill="none"
+               stroke-width="3.67" stroke-linecap="round" stroke-linejoin="round" class="clock-icon clock-icon-medium">
+            <g transform="matrix(1,0,0,1,-0.564968,0)">
+              <g>
+                <circle cx="22" cy="22" r="18.333" style="fill:none;"/>
+                <path d="M22,11L22,22L29.333,25.667" style="fill:none;fill-rule:nonzero;"/>
+              </g>
+              <g transform="matrix(1,0,0,1,23.1299,0)">
+                <g transform="matrix(1,0,0,1,-23.1299,0)">
+                  <path
+                    d="M33.565,7.778C36.721,5.208 40.747,3.667 45.13,3.667C55.248,3.667 63.463,11.882 63.463,22C63.463,32.118 55.248,40.333 45.13,40.333C40.747,40.333 36.721,38.792 33.565,36.222C37.694,32.859 40.333,27.735 40.333,22C40.333,16.265 37.694,11.141 33.565,7.778Z"
+                    style="fill:none;"/>
+                </g>
+                <path d="M22,11L22,22L29.333,25.667" style="fill:none;fill-rule:nonzero;"/>
+              </g>
+            </g>
+          </svg>
+        </button>
+        <button class="icon-button" [class.selected]="selectedIntensity === 'high'" (click)="selectIntensity('high')">
+          <svg xmlns="http://www.w3.org/2000/svg" width="100%" height="100%" viewBox="0 0 88 44" fill="none"
+               stroke-width="3.67" stroke-linecap="round" stroke-linejoin="round" class="clock-icon clock-icon-large">
+            <g transform="matrix(1,0,0,1,-0.678482,0)">
+              <g transform="matrix(1,0,0,1,-0.564968,0)">
+                <circle cx="22" cy="22" r="18.333" style="fill:none;"/>
+                <path d="M22,11L22,22L29.333,25.667" style="fill:none;fill-rule:nonzero;"/>
+              </g>
+              <g transform="matrix(1,0,0,1,22.565,0)">
+                <g transform="matrix(1,0,0,1,-23.1299,0)">
+                  <path
+                    d="M33.565,7.778C36.721,5.208 40.747,3.667 45.13,3.667C55.248,3.667 63.463,11.882 63.463,22C63.463,32.118 55.248,40.333 45.13,40.333C40.747,40.333 36.721,38.792 33.565,36.222C37.694,32.859 40.333,27.735 40.333,22C40.333,16.265 37.694,11.141 33.565,7.778Z"
+                    style="fill:none;"/>
+                </g>
+                <path d="M22,11L22,22L29.333,25.667" style="fill:none;fill-rule:nonzero;"/>
+              </g>
+              <g>
+                <g transform="matrix(1,0,0,1,45.9219,0)">
+                  <path d="M22,11L22,22L29.333,25.667"
+                        style="fill:none;fill-rule:nonzero;"/>
+                </g>
+                <path
+                  d="M56.243,7.872C59.416,5.246 63.486,3.667 67.922,3.667C78.04,3.667 86.255,11.882 86.255,22C86.255,32.118 78.04,40.333 67.922,40.333C63.486,40.333 59.416,38.754 56.243,36.128C60.307,32.765 62.898,27.683 62.898,22C62.898,16.317 60.307,11.235 56.243,7.872Z"
+                  style="fill:none;"/>
+              </g>
+            </g>
+          </svg>
+        </button>
+      </div>
     </div>
   </div>
 

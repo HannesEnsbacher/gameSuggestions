@@ -11,11 +11,11 @@ body {
   justify-content: center;
 
   > * {
-    max-width: 70%;
+    max-width: 75%;
     margin: 0 auto;
 
     @media (max-width: 1600px) {
-      max-width: 78%;
+      max-width: 80%;
     }
     @media (max-width: 1480px) {
       max-width: 90%;
@@ -45,7 +45,7 @@ a {
   justify-content: center;
   align-items: center;
   margin-top: 1.5rem;
-  background-color: (var(--alternate-background-color));
+  background-color: (var(--alternate-background-color-1));
   border-radius: 0.5rem;
   padding: 0.5rem 2rem 1rem 2rem;
 }

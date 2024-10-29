@@ -26,6 +26,8 @@ export class GameCardComponent {
   }; // Default game title
   @Input({transform: booleanAttribute}) selectable: boolean = false;
 
+  selectedIntensity: string = '';
+
 
   onSelectButton() {
 
@@ -33,5 +35,9 @@ export class GameCardComponent {
 
   onDetailsButton() {
 
+  }
+
+  selectIntensity(intensity: string) {
+    this.selectedIntensity = intensity;
   }
 }
