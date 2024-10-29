@@ -1,25 +1,30 @@
 <div class="game-card">
-  <img ngSrc="{{ game.img }}" [alt]="game.title" class="game-image" width="150" height="225">
+  <div class="game-image-container">
+    <img ngSrc="{{ game.img }}" [alt]="game.title" class="game-image" fill>
+
+  </div>
   <div class="game-card-info">
     <h5 class="game-title">{{ game.title }}</h5>
 
     <div class="game-card-buttons">
       <app-button
-        label="{{ primaryButtonLabel }}"
+        label="Details"
         variant="primary"
         size="medium"
-        class="game-card-primary-button"
-        customClass="no-side-padding-button"
-        (click)="onPrimaryButton()">{{ primaryButtonLabel }}
+        class="game-card-details-button"
+        customClasses="no-side-padding-button no-top-padding-button no-bottom-padding-button"
+        *ngIf="true"
+        (click)="onDetailsButton()">Details
       </app-button>
 
       <app-button
-        label="{{ secondaryButtonLabel }}"
+        label="Select"
         variant="primary"
         size="medium"
-        class="game-card-secondary-button"
-        customClass="no-side-padding-button"
-        (click)="onSecondaryButton()">{{ secondaryButtonLabel }}
+        class="game-card-select-button"
+        customClasses="no-side-padding-button no-top-padding-button no-bottom-padding-button"
+        *ngIf="selectable"
+        (click)="onSelectButton()">Select
       </app-button>
     </div>
   </div>

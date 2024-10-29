@@ -58,6 +58,14 @@
     padding-right: 0;
   }
 
+  &.no-top-padding-button {
+    padding-top: 0.75rem;
+  }
+
+  &.no-bottom-padding-button {
+    padding-bottom: 0.75rem;
+  }
+
   .spinner {
     width: 1rem;
     height: 1rem;

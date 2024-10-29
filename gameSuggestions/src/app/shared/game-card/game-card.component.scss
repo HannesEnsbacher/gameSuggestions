@@ -8,14 +8,18 @@
   flex-direction: row;
   padding: 1.25rem;
   width: 100%;
+  aspect-ratio: 3/2;
+}
+
+.game-image-container {
+  width: auto;
+  height: auto;
+  position: relative;
+  aspect-ratio: 6 / 9;
 }
 
 .game-image {
-  width: auto;
-  height: auto;
-  max-width: 150px;
   border-radius: 8px;
-  aspect-ratio: 4 / 5;
   object-fit: cover;
 }
 
@@ -26,10 +30,12 @@
   flex-direction: column;
   justify-content: space-between;
   width: 100%;
+  overflow: hidden;
 }
 
 .game-title {
   margin: 0;
+  overflow: hidden;
 }
 
 .game-card-buttons {
@@ -39,8 +45,8 @@
   align-items: center;
 }
 
-.game-card-primary-button,
-.game-card-secondary-button {
+.game-card-details-button,
+.game-card-select-button {
   margin-top: 1rem;
   width: 100%;
 }

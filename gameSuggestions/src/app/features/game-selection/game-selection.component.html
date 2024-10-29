@@ -23,10 +23,7 @@
     class="game-card"
     *ngFor="let game of games"
     [game]="game"
-    [primaryButtonLabel]="'Select'"
-    [secondaryButtonLabel]="'Details'"
-    [onPrimaryButton]="onSelectGame"
-    [onSecondaryButton]="onViewDetails">
+    selectable="true">
   </app-game-card>
 
 

@@ -40,10 +40,10 @@ export class GameSelectionComponent {
   }
 
   onSelectGame() {
-    console.log('Game Selected');
+    console.log('Game Selected: ');
   }
 
   onViewDetails() {
-    console.log('View Details');
+    console.log('View Details: ');
   }
 }

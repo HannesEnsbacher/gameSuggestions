@@ -1,6 +1,6 @@
 <button
   [attr.type]="type"
-  [ngClass]="['btn', 'btn-' + variant, 'btn-' + size, customClass]"
+  [ngClass]="['btn', 'btn-' + variant, 'btn-' + size, customClasses]"
   [disabled]="disabled || loading"
   (click)="handleClick($event)"
 >

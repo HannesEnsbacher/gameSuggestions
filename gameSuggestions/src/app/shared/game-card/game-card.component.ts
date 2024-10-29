@@ -1,6 +1,6 @@
-import {Component, Input} from '@angular/core';
+import {booleanAttribute, Component, Input} from '@angular/core';
 import {Game} from "../types/game.model";
-import {NgOptimizedImage} from "@angular/common";
+import {NgIf, NgOptimizedImage} from "@angular/common";
 import {ButtonComponent} from "../button/button.component";
 
 @Component({
@@ -8,7 +8,8 @@ import {ButtonComponent} from "../button/button.component";
   standalone: true,
   imports: [
     NgOptimizedImage,
-    ButtonComponent
+    ButtonComponent,
+    NgIf
   ],
   templateUrl: './game-card.component.html',
   styleUrl: './game-card.component.scss'
@@ -23,10 +24,14 @@ export class GameCardComponent {
     releaseDate: new Date(),
     popularity: 0
   }; // Default game title
-  @Input() primaryButtonLabel: string = "";
-  @Input() secondaryButtonLabel: string = "";
-  @Input() onPrimaryButton: () => void = () => console.log("Primary"); // Primary button click handler
-  @Input() onSecondaryButton: () => void = () => console.log("Secondary"); // Secondary button click handler
+  @Input({transform: booleanAttribute}) selectable: boolean = false;
 
 
+  onSelectButton() {
+
+  }
+
+  onDetailsButton() {
+
+  }
 }
