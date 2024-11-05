@@ -90,38 +90,36 @@
   color: var(--button-text-color);
 }
 
-.clock-icon {
-  stroke: var(--text-color);
-}
-
 .select-icons {
   display: flex;
   flex-direction: row;
   justify-content: space-between;
   align-items: center;
   width: 100%;
+  margin-top: 1rem;
 }
 
 .icon-button {
-  display: flex;
+  display: inline-flex;
   flex-direction: column;
   justify-content: center;
   align-items: center;
-  height: 70%;
   border-radius: 0.25rem;
   padding: 0.5rem;
   border: var(--primary-color) 1px solid;
   background-color: var(--alternate-background-color-1);
-}
-
-.clock-icon-small {
+  stroke: var(--text-color);
 
 }
 
-.clock-icon-medium {
-
+.selected-intensity {
+  background-color: var(--primary-color);
+  stroke: var(--button-text-color);
 }
 
+.clock-icon-small,
+.clock-icon-medium,
 .clock-icon-large {
-
+  display: block;
+  height: 1.25rem;
 }

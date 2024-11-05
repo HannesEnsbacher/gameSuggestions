@@ -39,5 +39,6 @@ export class GameCardComponent {
 
   selectIntensity(intensity: string) {
     this.selectedIntensity = intensity;
+    console.log(this.selectedIntensity)
   }
 }

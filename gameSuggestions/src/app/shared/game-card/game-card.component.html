@@ -27,17 +27,19 @@
         (click)="onSelectButton()">Select
       </app-button>
       <div class="select-icons">
-        <button class="icon-button" [class.selected]="selectedIntensity === 'low'" (click)="selectIntensity('low')">
-          <svg xmlns="http://www.w3.org/2000/svg" width="100%" height="100%" viewBox="0 0 24 24" fill="none"
+        <button class="icon-button" [class.selected-intensity]="selectedIntensity === 'low'"
+                (click)="selectIntensity('low')">
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none"
                stroke-width="2"
-               stroke-linecap="round" stroke-linejoin="round" class="clock-icon clock-icon-small">
+               stroke-linecap="round" stroke-linejoin="round" class="clock-icon-small">
             <circle cx="12" cy="12" r="10"></circle>
             <polyline points="12 6 12 12 16 14"></polyline>
           </svg>
         </button>
-        <button class="icon-button" [class.selected]="selectedIntensity === 'mid'" (click)="selectIntensity('mid')">
-          <svg xmlns="http://www.w3.org/2000/svg" width="100%" height="100%" viewBox="0 0 66 44" fill="none"
-               stroke-width="3.67" stroke-linecap="round" stroke-linejoin="round" class="clock-icon clock-icon-medium">
+        <button class="icon-button" [class.selected-intensity]="selectedIntensity === 'mid'"
+                (click)="selectIntensity('mid')">
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 66 44" fill="none"
+               stroke-width="3.67" stroke-linecap="round" stroke-linejoin="round" class="clock-icon-medium">
             <g transform="matrix(1,0,0,1,-0.564968,0)">
               <g>
                 <circle cx="22" cy="22" r="18.333" style="fill:none;"/>
@@ -54,9 +56,10 @@
             </g>
           </svg>
         </button>
-        <button class="icon-button" [class.selected]="selectedIntensity === 'high'" (click)="selectIntensity('high')">
-          <svg xmlns="http://www.w3.org/2000/svg" width="100%" height="100%" viewBox="0 0 88 44" fill="none"
-               stroke-width="3.67" stroke-linecap="round" stroke-linejoin="round" class="clock-icon clock-icon-large">
+        <button class="icon-button" [class.selected-intensity]="selectedIntensity === 'high'"
+                (click)="selectIntensity('high')">
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 88 44" fill="none"
+               stroke-width="3.67" stroke-linecap="round" stroke-linejoin="round" class="clock-icon-large">
             <g transform="matrix(1,0,0,1,-0.678482,0)">
               <g transform="matrix(1,0,0,1,-0.564968,0)">
                 <circle cx="22" cy="22" r="18.333" style="fill:none;"/>
