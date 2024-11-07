@@ -11,14 +11,17 @@ body {
   justify-content: center;
 
   > * {
-    max-width: 75%;
+    max-width: 60%;
     margin: 0 auto;
 
+    @media (max-width: 1760px) {
+      max-width: 68%;
+    }
     @media (max-width: 1600px) {
-      max-width: 80%;
+      max-width: 75%;
     }
     @media (max-width: 1480px) {
-      max-width: 90%;
+      max-width: 80%;
     }
 
   }
@@ -72,6 +75,21 @@ h5 {
 
 h6 {
   font-size: 1.125rem;
+}
+
+.tool-bar {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-top: 2rem;
+
+  input {
+    padding: 0.5rem;
+    border-radius: 0.25rem;
+    border: var(--button-text-color) 1px solid;
+    background-color: var(--alternate-background-color-2);
+    color: var(--text-color);
+  }
 }
 
 .bottom-buttons {

@@ -1,4 +1,37 @@
-<p>manual-preference works! but it is a veeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeery long text</p>
+<h2>Select additional preference information</h2>
+
+<p>This can be used to guide your suggestions more towards specific genres or tags. <br>
+  This step is optional.</p>
+
+<div class="tool-bar">
+  <!--  <app-search-bar
+      [placeholder]="'Search for games'"
+      (search)="onSearch($event)">
+    </app-search-bar>-->
+  <p>Here we are going to have a search bar to filter the games.</p>
+  <app-button
+    label="View Selected Games"
+    variant="secondary"
+    size="small"
+    (click)="onViewSelected($event)">
+  </app-button>
+</div>
+
+
+<div class="preference-container">
+  <div *ngFor="let type of groupedPreferences | keyvalue">
+    <h3>{{ capitalizeFirstLetter(type.key) }}</h3>
+    <div class="preference-grid">
+      <button
+        *ngFor="let preference of type.value"
+        class="preference-button"
+        [class.selected]="isSelected(preference)"
+        (click)="toggleSelectPreference(preference)">
+        {{ preference.value }}
+      </button>
+    </div>
+  </div>
+</div>
 
 <div class="bottom-buttons">
   <app-button

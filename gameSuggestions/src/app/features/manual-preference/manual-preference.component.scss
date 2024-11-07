@@ -1,0 +1,62 @@
+.preference-container {
+  padding-right: 0.75rem;
+  max-height: 55vh;
+  overflow-y: auto;
+}
+
+/* WebKit scrollbar styles */
+.preference-container::-webkit-scrollbar {
+  width: 0.25rem;
+}
+
+.preference-container::-webkit-scrollbar-track {
+  margin-top: 1.5rem;
+  background: var(--alternate-background-color-1);
+  border-radius: 0.125rem;
+}
+
+.preference-container::-webkit-scrollbar-thumb {
+  background-color: var(--alternate-background-color-3);
+  border-radius: 0.125rem;
+}
+
+.preference-container::-webkit-scrollbar-thumb:hover {
+  background-color: var(--alternate-background-color-4);
+}
+
+.preference-grid {
+  margin-top: 1rem;
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  grid-gap: 0.5rem;
+  justify-content: stretch;
+  width: 55vw;
+
+}
+
+@media (max-width: 700px) {
+  .preference-grid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+
+.preference-button {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: start;
+  border-radius: 0.25rem;
+  padding: 0.75rem;
+  font-size: 1rem;
+  color: var(--button-text-color);
+  border: var(--alternate-background-color-4) 1px solid;
+  background-color: var(--alternate-background-color-1);
+  stroke: var(--text-color);
+  width: 100%;
+}
+
+
+.selected {
+  background-color: var(--primary-color);
+  border: var(--alternate-primary-color-1) 1px solid;
+}
