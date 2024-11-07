@@ -4,31 +4,21 @@
 
   </div>
   <div class="game-card-info">
-    <h5 class="game-title">{{ game.title }}</h5>
+    <div class="game-card-text">
+      <h5 class="game-title">{{ game.title }}</h5>
+      <p class="game-description"
+      *ngIf="descriptionActive">{{ game.description }}</p>
+    </div>
 
     <div class="game-card-buttons">
-      <app-button
-        label="Details"
-        variant="primary"
-        size="medium"
-        class="game-card-details-button"
-        customClasses="no-side-padding-button no-top-padding-button no-bottom-padding-button"
-        *ngIf="false"
-        (click)="onDetailsButton()">Details
-      </app-button>
-
-      <app-button
-        label="Select"
-        variant="primary"
-        size="medium"
-        class="game-card-select-button"
-        customClasses="no-side-padding-button no-top-padding-button no-bottom-padding-button"
-        *ngIf="false"
-        (click)="onSelectButton()">Select
-      </app-button>
-      <div class="select-icons">
-        <button class="icon-button" [class.selected-intensity]="selectedIntensity === 'low'"
-                (click)="selectIntensity('low')">
+      <a
+        class="detail-link"
+        *ngIf="detailsViewable"
+        [routerLink]="['/game-details', game.id]">View Details
+      </a>
+      <div class="select-icons" *ngIf="selectable">
+        <button class="icon-button" [class.selected-intensity]="this.game.intensity === Intensity.Low"
+                (click)="selectIntensity(Intensity.Low)">
           <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none"
                stroke-width="2"
                stroke-linecap="round" stroke-linejoin="round" class="clock-icon-small">
@@ -36,8 +26,8 @@
             <polyline points="12 6 12 12 16 14"></polyline>
           </svg>
         </button>
-        <button class="icon-button" [class.selected-intensity]="selectedIntensity === 'mid'"
-                (click)="selectIntensity('mid')">
+        <button class="icon-button" [class.selected-intensity]="this.game.intensity === Intensity.Medium"
+                (click)="selectIntensity(Intensity.Medium)">
           <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 66 44" fill="none"
                stroke-width="3.67" stroke-linecap="round" stroke-linejoin="round" class="clock-icon-medium">
             <g transform="matrix(1,0,0,1,-0.564968,0)">
@@ -56,8 +46,8 @@
             </g>
           </svg>
         </button>
-        <button class="icon-button" [class.selected-intensity]="selectedIntensity === 'high'"
-                (click)="selectIntensity('high')">
+        <button class="icon-button" [class.selected-intensity]="this.game.intensity === Intensity.High"
+                (click)="selectIntensity(Intensity.High)">
           <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 88 44" fill="none"
                stroke-width="3.67" stroke-linecap="round" stroke-linejoin="round" class="clock-icon-large">
             <g transform="matrix(1,0,0,1,-0.678482,0)">

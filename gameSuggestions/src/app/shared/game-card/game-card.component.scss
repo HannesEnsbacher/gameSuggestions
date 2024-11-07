@@ -8,6 +8,8 @@
   flex-direction: row;
   padding: 1.25rem;
   width: 100%;
+  max-width: 48rem;
+  min-width: 16rem;
   aspect-ratio: 3/2;
 }
 
@@ -39,6 +41,13 @@
   margin: 0;
   padding-right: 0.75rem;
   overflow-y: auto;
+  font-weight: normal;
+}
+
+.game-card-text {
+  margin: 0;
+  padding-right: 0.75rem;
+  overflow-y: auto;
 }
 
 /* WebKit scrollbar styles */
@@ -60,11 +69,36 @@
   background-color: var(--alternate-background-color-4);
 }
 
+/* WebKit scrollbar styles */
+.game-card-text::-webkit-scrollbar {
+  width: 0.25rem;
+}
+
+.game-card-text::-webkit-scrollbar-track {
+  background: var(--alternate-background-color-1);
+  border-radius: 0.125rem;
+}
+
+.game-card-text::-webkit-scrollbar-thumb {
+  background-color: var(--alternate-background-color-3);
+  border-radius: 0.125rem;
+}
+
+.game-card-text::-webkit-scrollbar-thumb:hover {
+  background-color: var(--alternate-background-color-4);
+}
+
 .game-card-buttons {
   display: flex;
   flex-direction: column;
-  justify-content: space-between;
+  justify-content: space-around;
   align-items: center;
+}
+
+.detail-link {
+  padding-top: 0.75rem;
+  width: 100%;
+  text-decoration: underline;
 }
 
 .game-card-details-button,
@@ -111,7 +145,7 @@
   align-items: center;
   border-radius: 0.25rem;
   padding: 0.5rem;
-  border: var(--button-text-color) 1px solid;
+  border: var(--alternate-background-color-4) 1px solid;
   background-color: var(--alternate-background-color-1);
   stroke: var(--text-color);
   width: 100%;
@@ -120,7 +154,7 @@
 .selected-intensity {
   background-color: var(--primary-color);
   stroke: var(--button-text-color);
-  border: var(--primary-color) 1px solid;
+  border: var(--alternate-primary-color-1) 1px solid;
 }
 
 .clock-icon-small,
