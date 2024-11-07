@@ -3,7 +3,7 @@
 <p>Provide how much time you or your group spent on the game. <br>
   Also include games where not all members participated but consider that in the time estimate.</p>
 
-<div class="search-bar">
+<div class="tool-bar">
   <!--  <app-search-bar
       [placeholder]="'Search for games'"
       (search)="onSearch($event)">
@@ -23,7 +23,8 @@
     class="game-card"
     *ngFor="let game of games"
     [game]="game"
-    selectable="true">
+    selectable="true"
+    detailsViewable="true">
   </app-game-card>
 
 
