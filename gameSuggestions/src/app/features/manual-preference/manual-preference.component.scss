@@ -30,7 +30,7 @@
   grid-template-columns: repeat(3, 1fr);
   grid-gap: 0.5rem;
   justify-content: stretch;
-  width: 55vw;
+  min-width: 55vw;
 
 }
 

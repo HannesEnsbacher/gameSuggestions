@@ -4,17 +4,25 @@
   Also include games where not all members participated but consider that in the time estimate.</p>
 
 <div class="tool-bar">
-  <!--  <app-search-bar
-      [placeholder]="'Search for games'"
-      (search)="onSearch($event)">
-    </app-search-bar>-->
-  <p>Here we are going to have a search bar to filter the games.</p>
-  <app-button
-    label="View Selected Games"
-    variant="secondary"
-    size="small"
-    (click)="onViewSelected($event)">
-  </app-button>
+  <app-searchbar
+    [placeholder]="'Search for games'"
+    (search)="onSearch($event)">
+  </app-searchbar>
+  <div class="action-buttons">
+    <app-button
+      label="View Selected"
+      variant="secondary"
+      size="small"
+      (click)="onViewSelected($event)">
+    </app-button>
+    <app-button
+      label="Clear All"
+      variant="secondary"
+      size="small"
+      (click)="onClearSelection($event)">
+    </app-button>
+  </div>
+
 </div>
 
 <div class="gamecards-container">

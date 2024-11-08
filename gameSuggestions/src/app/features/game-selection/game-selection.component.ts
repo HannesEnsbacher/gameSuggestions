@@ -5,6 +5,7 @@ import {Game} from "../../shared/types/game.model";
 import {DUMMY_GAMES} from "../../shared/data/dummy-games";
 import {GameCardComponent} from "../../shared/game-card/game-card.component";
 import {NgForOf} from "@angular/common";
+import {SearchbarComponent} from "../../shared/searchbar/searchbar.component";
 
 @Component({
   selector: 'app-game-selection',
@@ -12,7 +13,8 @@ import {NgForOf} from "@angular/common";
   imports: [
     ButtonComponent,
     GameCardComponent,
-    NgForOf
+    NgForOf,
+    SearchbarComponent
   ],
   templateUrl: './game-selection.component.html',
   styleUrl: './game-selection.component.scss'
@@ -45,5 +47,13 @@ export class GameSelectionComponent {
 
   onViewDetails() {
     console.log('View Details: ');
+  }
+
+  onSearch($event: any) {
+
+  }
+
+  onClearSelection($event: MouseEvent) {
+    console.log('Clear Selection')
   }
 }

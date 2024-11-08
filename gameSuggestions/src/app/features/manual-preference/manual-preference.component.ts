@@ -5,6 +5,7 @@ import {GameCardComponent} from "../../shared/game-card/game-card.component";
 import {KeyValuePipe, NgForOf} from "@angular/common";
 import {DUMMY_PREFERENCES} from "../../shared/data/dummy-preferences";
 import {Preference} from "../../shared/types/preference.model";
+import {SearchbarComponent} from "../../shared/searchbar/searchbar.component";
 
 @Component({
   selector: 'app-manual-preference',
@@ -13,7 +14,8 @@ import {Preference} from "../../shared/types/preference.model";
     ButtonComponent,
     GameCardComponent,
     NgForOf,
-    KeyValuePipe
+    KeyValuePipe,
+    SearchbarComponent
   ],
   templateUrl: './manual-preference.component.html',
   styleUrl: './manual-preference.component.scss'
@@ -42,6 +44,10 @@ export class ManualPreferenceComponent {
 
   onViewSelected($event: MouseEvent) {
 
+  }
+
+  onClearSelection($event: MouseEvent) {
+    console.log('Clear Selection')
   }
 
   groupPreferencesByType() {
@@ -85,5 +91,9 @@ export class ManualPreferenceComponent {
 
   isSelected(preference: Preference): boolean {
     return this.selectedPreferences.some(p => p.id === preference.id);
+  }
+
+  onSearch($event: any) {
+
   }
 }
