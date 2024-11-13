@@ -2,7 +2,7 @@ import {Component} from '@angular/core';
 import {Router} from "@angular/router";
 import {ButtonComponent} from "../../shared/button/button.component";
 import {GameCardComponent} from "../../shared/game-card/game-card.component";
-import {KeyValuePipe, NgForOf} from "@angular/common";
+import {KeyValuePipe, NgForOf, NgIf} from "@angular/common";
 import {DUMMY_PREFERENCES} from "../../shared/data/dummy-preferences";
 import {Preference} from "../../shared/types/preference.model";
 import {SearchbarComponent} from "../../shared/searchbar/searchbar.component";
@@ -15,7 +15,8 @@ import {SearchbarComponent} from "../../shared/searchbar/searchbar.component";
     GameCardComponent,
     NgForOf,
     KeyValuePipe,
-    SearchbarComponent
+    SearchbarComponent,
+    NgIf
   ],
   templateUrl: './manual-preference.component.html',
   styleUrl: './manual-preference.component.scss'
@@ -23,6 +24,7 @@ import {SearchbarComponent} from "../../shared/searchbar/searchbar.component";
 export class ManualPreferenceComponent {
   groupedPreferences: { [key: string]: Preference[] } = {};
   selectedPreferences: Preference[] = [];
+  showSelected: boolean = false;
 
 
   constructor(private router: Router) {
@@ -43,11 +45,16 @@ export class ManualPreferenceComponent {
   }
 
   onViewSelected($event: MouseEvent) {
+    this.showSelected = !this.showSelected;
+  }
 
+  getViewSelectedButtonLabel(): string {
+    return this.showSelected ? 'View All' : 'View Selected';
   }
 
   onClearSelection($event: MouseEvent) {
-    console.log('Clear Selection')
+    this.selectedPreferences = [];
+    this.saveSelectedPreferences();
   }
 
   groupPreferencesByType() {
@@ -93,7 +100,12 @@ export class ManualPreferenceComponent {
     return this.selectedPreferences.some(p => p.id === preference.id);
   }
 
-  onSearch($event: any) {
+  onSearch(searchTerm: any) {
+    // TODO send search term to server and get filtered preferences
+    // TODO also include some sort of caching logic preferably on one of the services that will be created
+  }
 
+  hasSelectedProperty(group: string) {
+    return this.groupedPreferences[group].some(preference => this.isSelected(preference));
   }
 }

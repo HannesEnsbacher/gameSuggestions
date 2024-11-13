@@ -10,7 +10,7 @@
   </app-searchbar>
   <div class="action-buttons">
     <app-button
-      label="View Selected"
+      [label]="getViewSelectedButtonLabel()"
       variant="secondary"
       size="small"
       (click)="onViewSelected($event)">
@@ -27,16 +27,20 @@
 
 <div class="preference-container">
   <div *ngFor="let type of groupedPreferences | keyvalue">
-    <h3>{{ capitalizeFirstLetter(type.key) }}</h3>
-    <div class="preference-grid">
-      <button
-        *ngFor="let preference of type.value"
-        class="preference-button"
-        [class.selected]="isSelected(preference)"
-        (click)="toggleSelectPreference(preference)">
-        {{ preference.value }}
-      </button>
-    </div>
+    <ng-container *ngIf="!showSelected || hasSelectedProperty(type.key)">
+      <h3>{{ capitalizeFirstLetter(type.key) }}</h3>
+      <div class="preference-grid">
+        <ng-container *ngFor="let preference of type.value">
+          <button
+            *ngIf="!showSelected || isSelected(preference)"
+            class="preference-button"
+            [class.selected]="isSelected(preference)"
+            (click)="toggleSelectPreference(preference)">
+            {{ preference.value }}
+          </button>
+        </ng-container>
+      </div>
+    </ng-container>
   </div>
 </div>
 
