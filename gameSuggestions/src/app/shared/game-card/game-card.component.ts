@@ -33,7 +33,7 @@ export class GameCardComponent {
 
 
   ngOnInit() {
-    this.loadSelectedPreferences();
+    // this.loadSelectedPreferences();
   }
 
   onSelectButton() {
@@ -74,16 +74,16 @@ export class GameCardComponent {
     localStorage.setItem('selectedGames', JSON.stringify(savedGames));
   }
 
-  loadSelectedPreferences() {
-    const savedGamesJson = localStorage.getItem('selectedGames');
-    if (savedGamesJson) {
-      const savedGames = JSON.parse(savedGamesJson);
-      const gameIndex = savedGames.findIndex((game: Game) => game.id === this.game.id);
-      if (gameIndex > -1) {
-        this.game.intensity = savedGames[gameIndex].intensity;
-      }
-    }
-  }
+  // loadSelectedPreferences() {
+  //   const savedGamesJson = localStorage.getItem('selectedGames');
+  //   if (savedGamesJson) {
+  //     const savedGames = JSON.parse(savedGamesJson);
+  //     const gameIndex = savedGames.findIndex((game: Game) => game.id === this.game.id);
+  //     if (gameIndex > -1) {
+  //       this.game.intensity = savedGames[gameIndex].intensity;
+  //     }
+  //   }
+  // }
 
   protected readonly Intensity = Intensity;
 }

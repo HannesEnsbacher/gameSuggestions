@@ -29,7 +29,23 @@ export class GameSelectionComponent {
 
   ngOnInit() {
     this.games = DUMMY_GAMES;
+    this.loadSelectedPreferences();
   }
+
+  loadSelectedPreferences() {
+    const savedGamesJson = localStorage.getItem('selectedGames');
+    if (savedGamesJson) {
+      const savedGames = JSON.parse(savedGamesJson);
+      for (const savedGame of savedGames) {
+        const gameIndex = this.games.findIndex((game: Game) => game.id === savedGame.id);
+        if (gameIndex > -1) {
+          this.games[gameIndex].intensity = savedGame.intensity;
+        }
+      }
+    }
+  }
+
+
   onNext($event: MouseEvent) {
     this.router.navigate(['/manualPreferences']);
   }
@@ -41,16 +57,9 @@ export class GameSelectionComponent {
     console.log('View Selected')
   }
 
-  onSelectGame() {
-    console.log('Game Selected: ');
-  }
-
-  onViewDetails() {
-    console.log('View Details: ');
-  }
-
-  onSearch($event: any) {
-
+  onSearch(searchTerm: any) {
+    // TODO send search term to server and get filtered preferences
+    // TODO also include some sort of caching logic preferably on one of the services that will be created
   }
 
   onClearSelection($event: MouseEvent) {
