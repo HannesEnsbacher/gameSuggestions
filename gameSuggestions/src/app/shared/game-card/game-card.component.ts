@@ -36,13 +36,6 @@ export class GameCardComponent {
     // this.loadSelectedPreferences();
   }
 
-  onSelectButton() {
-
-  }
-
-  onDetailsButton() {
-
-  }
 
   selectIntensity(intensity: Intensity) {
     if (this.game.intensity === intensity) {

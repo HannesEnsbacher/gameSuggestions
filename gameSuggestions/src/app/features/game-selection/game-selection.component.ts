@@ -63,6 +63,6 @@ export class GameSelectionComponent {
   }
 
   onClearSelection($event: MouseEvent) {
-    console.log('Clear Selection')
+    localStorage.removeItem('selectedGames');
   }
 }
