@@ -1,4 +1,28 @@
-<p>game-suggestions works! but it is a veeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeery long text</p>
+<h2>Here are your Game Suggestions</h2>
+
+<p>If you already played them, just add them to your selection and click reload.</p>
+
+<div class="tool-bar">
+  <div class="action-buttons">
+    <app-button
+      label="Reload"
+      variant="secondary"
+      size="small"
+      (click)="onReload($event)">
+    </app-button>
+  </div>
+</div>
+
+
+<div class="gamecards-container">
+  <app-game-card
+    class="game-card"
+    *ngFor="let game of suggestions"
+    [game]="game"
+    selectable="true"
+    detailsViewable="true">
+  </app-game-card>
+</div>
 
 <div class="bottom-buttons">
   <app-button

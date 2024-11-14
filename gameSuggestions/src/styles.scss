@@ -122,4 +122,23 @@ h6 {
   width: 100%;
 }
 
+.gamecards-container {
+  margin-top: 1rem;
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  grid-gap: 0.5rem;
+  justify-content: stretch;
+}
+
+@media (max-width: 1355px) {
+  .gamecards-container {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+
+@media (max-width: 970px) {
+  .gamecards-container {
+    grid-template-columns: 1fr;
+  }
+}
 
