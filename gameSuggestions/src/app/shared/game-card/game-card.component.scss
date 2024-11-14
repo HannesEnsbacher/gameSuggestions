@@ -142,6 +142,11 @@
   border: var(--alternate-primary-color-1) 1px solid;
 }
 
+.selected-card {
+  background-color: var(--alternate-background-color-3);
+  border: var(--alternate-background-color-4) 1px solid;
+}
+
 .clock-icon-small,
 .clock-icon-medium,
 .clock-icon-large {

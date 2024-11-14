@@ -57,16 +57,13 @@ export class GameSelectionComponent {
 
   onViewSelected($event: MouseEvent) {
     this.showSelected = !this.showSelected;
-    console.log('show selected:', this.showSelected);
   }
-
 
   getViewSelectedButtonLabel(): string {
     return this.showSelected ? 'View All' : 'View Selected';
   }
 
   isSelected(game: Game): boolean {
-    console.log(game.intensity !== undefined)
     return game.intensity !== undefined;
   }
 

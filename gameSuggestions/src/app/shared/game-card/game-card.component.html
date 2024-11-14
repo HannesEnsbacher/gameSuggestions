@@ -1,4 +1,4 @@
-<div class="game-card">
+<div class="game-card" [class.selected-card]="this.game.intensity !== undefined">
   <div class="game-image-container">
     <img ngSrc="{{ game.img }}" [alt]="game.title" class="game-image" fill>
 
