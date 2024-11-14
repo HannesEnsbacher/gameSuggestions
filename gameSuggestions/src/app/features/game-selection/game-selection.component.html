@@ -10,7 +10,7 @@
   </app-searchbar>
   <div class="action-buttons">
     <app-button
-      label="View Selected"
+      [label]="getViewSelectedButtonLabel()"
       variant="secondary"
       size="small"
       (click)="onViewSelected($event)">
@@ -26,14 +26,15 @@
 </div>
 
 <div class="gamecards-container">
-
-  <app-game-card
-    class="game-card"
-    *ngFor="let game of games"
-    [game]="game"
-    selectable="true"
-    detailsViewable="true">
-  </app-game-card>
+  <ng-container *ngFor="let game of games">
+    <app-game-card
+      class="game-card"
+      *ngIf="!showSelected || isSelected(game)"
+      [game]="game"
+      selectable="true"
+      detailsViewable="true">
+    </app-game-card>
+  </ng-container>
 
 
 </div>

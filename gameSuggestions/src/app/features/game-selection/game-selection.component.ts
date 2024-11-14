@@ -1,10 +1,10 @@
-import { Component } from '@angular/core';
+import {Component} from '@angular/core';
 import {ButtonComponent} from "../../shared/button/button.component";
 import {Router} from "@angular/router";
 import {Game} from "../../shared/types/game.model";
 import {DUMMY_GAMES} from "../../shared/data/dummy-games";
 import {GameCardComponent} from "../../shared/game-card/game-card.component";
-import {NgForOf} from "@angular/common";
+import {NgForOf, NgIf} from "@angular/common";
 import {SearchbarComponent} from "../../shared/searchbar/searchbar.component";
 
 @Component({
@@ -14,17 +14,18 @@ import {SearchbarComponent} from "../../shared/searchbar/searchbar.component";
     ButtonComponent,
     GameCardComponent,
     NgForOf,
-    SearchbarComponent
+    SearchbarComponent,
+    NgIf
   ],
   templateUrl: './game-selection.component.html',
   styleUrl: './game-selection.component.scss'
 })
 export class GameSelectionComponent {
   games: Game[] = [];
+  showSelected: boolean = false;
 
   constructor(private router: Router) {
   }
-
 
 
   ngOnInit() {
@@ -49,13 +50,26 @@ export class GameSelectionComponent {
   onNext($event: MouseEvent) {
     this.router.navigate(['/manualPreferences']);
   }
+
   onBack($event: MouseEvent) {
     this.router.navigate(['/home']);
   }
 
   onViewSelected($event: MouseEvent) {
-    console.log('View Selected')
+    this.showSelected = !this.showSelected;
+    console.log('show selected:', this.showSelected);
   }
+
+
+  getViewSelectedButtonLabel(): string {
+    return this.showSelected ? 'View All' : 'View Selected';
+  }
+
+  isSelected(game: Game): boolean {
+    console.log(game.intensity !== undefined)
+    return game.intensity !== undefined;
+  }
+
 
   onSearch(searchTerm: any) {
     // TODO send search term to server and get filtered preferences
@@ -63,6 +77,7 @@ export class GameSelectionComponent {
   }
 
   onClearSelection($event: MouseEvent) {
-    localStorage.removeItem('selectedGames');
+    localStorage.removeItem('selectedGames'); // todo this should be replaced by some localstorage service
+    this.games.forEach((game: Game) => game.intensity = undefined); // todo this should be replaced by some method that gets the games from backend with caching
   }
 }
