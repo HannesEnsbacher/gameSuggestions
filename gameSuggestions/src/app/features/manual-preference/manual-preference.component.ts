@@ -6,6 +6,7 @@ import {KeyValuePipe, NgForOf, NgIf} from "@angular/common";
 import {DUMMY_PREFERENCES} from "../../shared/data/dummy-preferences";
 import {Preference} from "../../shared/types/preference.model";
 import {SearchbarComponent} from "../../shared/searchbar/searchbar.component";
+import {SelectedPreferencesService} from "../../services/localstorage/selected-preferences.service";
 
 @Component({
   selector: 'app-manual-preference',
@@ -23,17 +24,16 @@ import {SearchbarComponent} from "../../shared/searchbar/searchbar.component";
 })
 export class ManualPreferenceComponent {
   groupedPreferences: { [key: string]: Preference[] } = {};
-  selectedPreferences: Preference[] = [];
   showSelected: boolean = false;
 
 
-  constructor(private router: Router) {
+  constructor(private router: Router, private selectedPreferencesService: SelectedPreferencesService) {
   }
 
 
   ngOnInit() {
-    this.loadSelectedPreferences();
     this.groupPreferencesByType();
+    this.loadSelectedPreferences();
   }
 
   onNext($event: MouseEvent) {
@@ -53,20 +53,21 @@ export class ManualPreferenceComponent {
   }
 
   onClearSelection($event: MouseEvent) {
-    this.selectedPreferences = [];
-    this.saveSelectedPreferences();
+    this.selectedPreferencesService.clearSelectedPreferences();
+    this.groupPreferencesByType(); // todo this should be replaced by some method that gets the games from backend with caching, or the method that is called here should do that
   }
 
   groupPreferencesByType() {
     this.groupedPreferences = DUMMY_PREFERENCES.reduce((groups, preference) => {
-      let type = preference.type;
+      const preferenceCopy = {...preference};
+      let type = preferenceCopy.type;
       if (!type) {
         type = 'other';
       }
       if (!groups[type]) {
         groups[type] = [];
       }
-      groups[type].push(preference);
+      groups[type].push(preferenceCopy);
       return groups;
 
     }, {} as { [key: string]: Preference[] });
@@ -77,27 +78,19 @@ export class ManualPreferenceComponent {
   }
 
   toggleSelectPreference(preference: Preference) {
-    if (this.isSelected(preference)) {
-      this.selectedPreferences = this.selectedPreferences.filter(p => p.id !== preference.id);
-    } else {
-      this.selectedPreferences.push(preference);
-    }
-    this.saveSelectedPreferences();
-  }
-
-  saveSelectedPreferences() {
-    localStorage.setItem('selectedPreferences', JSON.stringify(this.selectedPreferences));
+    preference.selected = !preference.selected;
+    this.selectedPreferencesService.saveSingleSelectedPreference(preference);
   }
 
   loadSelectedPreferences() {
-    const savedPreferences = localStorage.getItem('selectedPreferences');
-    if (savedPreferences) {
-      this.selectedPreferences = JSON.parse(savedPreferences);
+    const savedPreferences = this.selectedPreferencesService.loadSelectedPreferences();
+    for (const savedPreference of savedPreferences) {
+      const type = savedPreference.type ? savedPreference.type : 'other';
+      const preferenceIndex = this.groupedPreferences[type].findIndex((preference: Preference) => preference.id === savedPreference.id);
+      if (preferenceIndex > -1) {
+        this.groupedPreferences[type][preferenceIndex].selected = true;
+      }
     }
-  }
-
-  isSelected(preference: Preference): boolean {
-    return this.selectedPreferences.some(p => p.id === preference.id);
   }
 
   onSearch(searchTerm: any) {
@@ -106,6 +99,6 @@ export class ManualPreferenceComponent {
   }
 
   hasSelectedProperty(group: string) {
-    return this.groupedPreferences[group].some(preference => this.isSelected(preference));
+    return this.groupedPreferences[group].some(preference => preference.selected === true);
   }
 }

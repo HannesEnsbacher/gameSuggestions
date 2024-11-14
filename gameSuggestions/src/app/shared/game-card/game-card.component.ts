@@ -4,6 +4,7 @@ import {NgIf, NgOptimizedImage} from "@angular/common";
 import {ButtonComponent} from "../button/button.component";
 import {RouterLink} from "@angular/router";
 import {Intensity} from "../types/intensity.enum";
+import {SelectedGamesService} from "../../services/localstorage/selected-games.service";
 
 @Component({
   selector: 'app-game-card',
@@ -31,6 +32,8 @@ export class GameCardComponent {
   @Input({transform: booleanAttribute}) detailsViewable: boolean = false;
   @Input({transform: booleanAttribute}) descriptionActive: boolean = false;
 
+  constructor(private selectedGamesService: SelectedGamesService) {
+  }
 
   ngOnInit() {
     // this.loadSelectedPreferences();
@@ -43,40 +46,8 @@ export class GameCardComponent {
     } else {
       this.game.intensity = intensity;
     }
-    this.saveSelectedPreferences();
+    this.selectedGamesService.saveSingleSelectedGame(this.game);
   }
-
-  // TODO I will probably need to move the directly localStorage related lines to a service because they might be needed elsewhere
-
-  saveSelectedPreferences() {
-    const savedGamesJson = localStorage.getItem('selectedGames');
-    let savedGames = [];
-    if (savedGamesJson) {
-      savedGames = JSON.parse(savedGamesJson);
-    }
-    const gameIndex = savedGames.findIndex((game: Game) => game.id === this.game.id);
-    if (gameIndex > -1) {
-      if (!this.game.intensity) {
-        savedGames.splice(gameIndex, 1);
-      } else {
-        savedGames[gameIndex] = this.game;
-      }
-    } else {
-      savedGames.push(this.game);
-    }
-    localStorage.setItem('selectedGames', JSON.stringify(savedGames));
-  }
-
-  // loadSelectedPreferences() {
-  //   const savedGamesJson = localStorage.getItem('selectedGames');
-  //   if (savedGamesJson) {
-  //     const savedGames = JSON.parse(savedGamesJson);
-  //     const gameIndex = savedGames.findIndex((game: Game) => game.id === this.game.id);
-  //     if (gameIndex > -1) {
-  //       this.game.intensity = savedGames[gameIndex].intensity;
-  //     }
-  //   }
-  // }
 
   protected readonly Intensity = Intensity;
 }

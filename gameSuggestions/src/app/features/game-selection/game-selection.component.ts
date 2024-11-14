@@ -6,6 +6,7 @@ import {DUMMY_GAMES} from "../../shared/data/dummy-games";
 import {GameCardComponent} from "../../shared/game-card/game-card.component";
 import {NgForOf, NgIf} from "@angular/common";
 import {SearchbarComponent} from "../../shared/searchbar/searchbar.component";
+import {SelectedGamesService} from "../../services/localstorage/selected-games.service";
 
 @Component({
   selector: 'app-game-selection',
@@ -24,24 +25,22 @@ export class GameSelectionComponent {
   games: Game[] = [];
   showSelected: boolean = false;
 
-  constructor(private router: Router) {
+  constructor(private router: Router, private selectedGamesService: SelectedGamesService) {
   }
 
 
   ngOnInit() {
     this.games = DUMMY_GAMES;
-    this.loadSelectedPreferences();
+    this.loadSelectedGames();
   }
 
-  loadSelectedPreferences() {
-    const savedGamesJson = localStorage.getItem('selectedGames');
-    if (savedGamesJson) {
-      const savedGames = JSON.parse(savedGamesJson);
-      for (const savedGame of savedGames) {
-        const gameIndex = this.games.findIndex((game: Game) => game.id === savedGame.id);
-        if (gameIndex > -1) {
-          this.games[gameIndex].intensity = savedGame.intensity;
-        }
+  loadSelectedGames() {
+    const savedGames = this.selectedGamesService.loadSelectedGames();
+
+    for (const savedGame of savedGames) {
+      const gameIndex = this.games.findIndex((game: Game) => game.id === savedGame.id);
+      if (gameIndex > -1) {
+        this.games[gameIndex].intensity = savedGame.intensity;
       }
     }
   }
@@ -74,7 +73,8 @@ export class GameSelectionComponent {
   }
 
   onClearSelection($event: MouseEvent) {
-    localStorage.removeItem('selectedGames'); // todo this should be replaced by some localstorage service
+    this.selectedGamesService.clearSelectedGames();
+
     this.games.forEach((game: Game) => game.intensity = undefined); // todo this should be replaced by some method that gets the games from backend with caching
   }
 }

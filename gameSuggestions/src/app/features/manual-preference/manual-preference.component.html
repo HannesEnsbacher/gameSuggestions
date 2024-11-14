@@ -32,9 +32,9 @@
       <div class="preference-grid">
         <ng-container *ngFor="let preference of type.value">
           <button
-            *ngIf="!showSelected || isSelected(preference)"
+            *ngIf="!showSelected || preference.selected"
             class="preference-button"
-            [class.selected]="isSelected(preference)"
+            [class.selected]="preference.selected"
             (click)="toggleSelectPreference(preference)">
             {{ preference.value }}
           </button>
