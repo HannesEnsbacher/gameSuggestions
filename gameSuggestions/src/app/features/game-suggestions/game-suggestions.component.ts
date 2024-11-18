@@ -32,7 +32,7 @@ export class GameSuggestionsComponent {
 
   onDonate($event: MouseEvent) {
     console.log('Donate button clicked', $event)
-    // TODO: Implement onDonate
+    // TODO: Implement onDonate with buy me a coffee link
   }
 
   onBack($event: MouseEvent) {
