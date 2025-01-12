@@ -2,11 +2,11 @@ import {Component} from '@angular/core';
 import {ButtonComponent} from "../../shared/button/button.component";
 import {Router} from "@angular/router";
 import {Game} from "../../shared/types/game.model";
-import {DUMMY_GAMES} from "../../shared/data/dummy-games";
 import {GameCardComponent} from "../../shared/game-card/game-card.component";
 import {NgForOf, NgIf} from "@angular/common";
 import {SearchbarComponent} from "../../shared/searchbar/searchbar.component";
 import {SelectedGamesService} from "../../services/localstorage/selected-games.service";
+import {GamesService} from "../../services/backend/games.service";
 
 @Component({
   selector: 'app-game-selection',
@@ -25,13 +25,14 @@ export class GameSelectionComponent {
   games: Game[] = [];
   showSelected: boolean = false;
 
-  constructor(private router: Router, private selectedGamesService: SelectedGamesService) {
+  constructor(private router: Router, private selectedGamesService: SelectedGamesService, private gamesService: GamesService) {
   }
 
 
   ngOnInit() {
-    this.games = DUMMY_GAMES;
-    this.loadSelectedGames();
+    this.loadTopGames();
+
+
   }
 
   loadSelectedGames() {
@@ -43,6 +44,18 @@ export class GameSelectionComponent {
         this.games[gameIndex].intensity = savedGame.intensity;
       }
     }
+  }
+
+  loadTopGames() {
+    this.gamesService.loadTopGames().subscribe({
+      next: (games: Game[]) => {
+        this.games = games;
+        this.loadSelectedGames();
+      },
+      error: (error) => {
+        console.error('Error loading top games', error); // TODO something useful with the error
+      }
+    });
   }
 
 
@@ -68,13 +81,21 @@ export class GameSelectionComponent {
 
 
   onSearch(searchTerm: any) {
-    // TODO send search term to server and get filtered preferences
+    this.gamesService.searchGames(searchTerm).subscribe({
+      next: (games: Game[]) => {
+        this.games = games;
+        console.log('filtered games', games)
+        this.loadSelectedGames();
+      },
+      error: (error) => {
+        console.error('Error loading filtered games', error); // TODO something useful with the error
+      }
+    });
     // TODO also include some sort of caching logic preferably on one of the services that will be created
   }
 
   onClearSelection($event: MouseEvent) {
     this.selectedGamesService.clearSelectedGames();
-
-    this.games.forEach((game: Game) => game.intensity = undefined); // todo this should be replaced by some method that gets the games from backend with caching
+    this.loadTopGames();
   }
 }

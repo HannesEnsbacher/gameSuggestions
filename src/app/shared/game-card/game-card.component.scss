@@ -7,7 +7,6 @@
   display: flex;
   flex-direction: row;
   padding: 1.25rem;
-  width: 100%;
   max-width: 48rem;
   min-width: 16rem;
   aspect-ratio: 3/2;
@@ -17,7 +16,7 @@
   width: 100%;
   height: auto;
   position: relative;
-  aspect-ratio: 6 / 9;
+  aspect-ratio: 3 / 4;
 }
 
 .game-image {

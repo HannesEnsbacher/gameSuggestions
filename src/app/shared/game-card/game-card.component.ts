@@ -21,12 +21,11 @@ import {SelectedGamesService} from "../../services/localstorage/selected-games.s
 export class GameCardComponent {
   @Input() game: Game = {
     id: 0,
-    title: 'Default Game Title',
-    description: 'Default Game Description',
-    genre: ['Default Genre'],
-    img: 'https://example.com/default.jpg',
-    releaseDate: new Date(),
-    popularity: 0
+    name: 'Loading Game Title',
+    description: 'Loading Game Description',
+    keywords: ['Loading Keywords'],
+    cover: 'https://example.com/default.jpg',
+    first_release_date: new Date(),
   }; // Default game title
   @Input({transform: booleanAttribute}) selectable: boolean = false;
   @Input({transform: booleanAttribute}) detailsViewable: boolean = false;
@@ -36,7 +35,6 @@ export class GameCardComponent {
   }
 
   ngOnInit() {
-    // this.loadSelectedPreferences();
   }
 
 

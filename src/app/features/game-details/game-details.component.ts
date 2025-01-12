@@ -16,19 +16,18 @@ import {Game} from "../../shared/types/game.model";
 export class GameDetailsComponent {
   game: Game = {
     id: 0,
-    title: 'Default Game Title',
-    description: 'Default Game Description',
-    genre: ['Default Genre'],
-    img: 'https://example.com/default.jpg',
-    releaseDate: new Date(),
-    popularity: 0
+    name: 'Loading Game Title',
+    description: 'Loading Game Description',
+    keywords: ['Loading Keywords'],
+    cover: 'https://example.com/default.jpg',
+    first_release_date: new Date(),
   }; // Default game title
 
   selectedIntensity: string = '';
 
   constructor(private route: ActivatedRoute) {}
 
-  ngOnInit() {
+  ngOnInit() { // TODO either we need a route in backend that gets the game by id or, since we have all data already we should hand it over to the game-details component
     this.route.paramMap.subscribe(params => {
       const id = params.get('id');
       if (id) {

@@ -28,16 +28,14 @@
 <div class="gamecards-container">
   <ng-container *ngFor="let game of games">
     <app-game-card
-      class="game-card"
       *ngIf="!showSelected || isSelected(game)"
       [game]="game"
       selectable="true"
       detailsViewable="true">
     </app-game-card>
   </ng-container>
-
-
 </div>
+
 
 <div class="bottom-buttons">
   <app-button

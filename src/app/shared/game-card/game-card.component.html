@@ -1,11 +1,11 @@
 <div class="game-card" [class.selected-card]="this.game.intensity !== undefined">
   <div class="game-image-container">
-    <img ngSrc="{{ game.img }}" [alt]="game.title" class="game-image" fill>
+    <img ngSrc="{{ game.cover }}" [alt]="game.name" class="game-image" fill style="position: relative">
 
   </div>
   <div class="game-card-info">
     <div class="game-card-text">
-      <h5 class="game-title">{{ game.title }}</h5>
+      <h5 class="game-title">{{ game.name }}</h5>
       <p class="game-description"
       *ngIf="descriptionActive">{{ game.description }}</p>
     </div>
