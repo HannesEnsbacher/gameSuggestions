@@ -2,14 +2,12 @@ import {Intensity} from "./intensity.enum";
 
 export interface Game {
   id: number;
-  title: string;
+  name: string;
+  cover?: string
+  first_release_date?: Date;
+  keywords?: string[];
+  platforms?: string[];
   description?: string;
-  genre?: string[];
-  img?: string
-  intensity?: Intensity;
 
-  // Still have to think about those
-  popularity?: number;
-  score?: number;
-  releaseDate?: Date;
+  intensity?: Intensity;
 }
