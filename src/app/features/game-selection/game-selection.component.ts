@@ -81,10 +81,13 @@ export class GameSelectionComponent {
 
 
   onSearch(searchTerm: any) {
+    if (searchTerm.length === 0) {
+      this.loadTopGames();
+      return;
+    }
     this.gamesService.searchGames(searchTerm).subscribe({
       next: (games: Game[]) => {
         this.games = games;
-        console.log('filtered games', games)
         this.loadSelectedGames();
       },
       error: (error) => {

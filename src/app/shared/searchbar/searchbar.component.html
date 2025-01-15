@@ -4,6 +4,7 @@
     class="search-input"
     [placeholder]="placeholder"
     [(ngModel)]="searchTerm"
+    (ngModelChange)="onSearchInput($event)"
     (keyup.enter)="onSearch()"
   />
   <button (click)="onSearch()" class="search-button">
