@@ -7,7 +7,7 @@
     <div class="game-card-text">
       <h5 class="game-title">{{ game.name }}</h5>
       <p class="game-description"
-      *ngIf="descriptionActive">{{ game.description }}</p>
+         *ngIf="descriptionActive">{{ game.description }}</p>
     </div>
 
     <div class="game-card-buttons">
@@ -20,59 +20,39 @@
         <button class="icon-button" [class.selected-intensity]="this.game.intensity === Intensity.Low"
                 (click)="selectIntensity(Intensity.Low)">
           <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none"
-               stroke-width="2"
-               stroke-linecap="round" stroke-linejoin="round" class="clock-icon-small">
-            <circle cx="12" cy="12" r="10"></circle>
-            <polyline points="12 6 12 12 16 14"></polyline>
+               stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="star-icon-small">
+            <polygon
+              points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"></polygon>
           </svg>
         </button>
         <button class="icon-button" [class.selected-intensity]="this.game.intensity === Intensity.Medium"
                 (click)="selectIntensity(Intensity.Medium)">
-          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 66 44" fill="none"
-               stroke-width="3.67" stroke-linecap="round" stroke-linejoin="round" class="clock-icon-medium">
-            <g transform="matrix(1,0,0,1,-0.564968,0)">
-              <g>
-                <circle cx="22" cy="22" r="18.333" style="fill:none;"/>
-                <path d="M22,11L22,22L29.333,25.667" style="fill:none;fill-rule:nonzero;"/>
-              </g>
-              <g transform="matrix(1,0,0,1,23.1299,0)">
-                <g transform="matrix(1,0,0,1,-23.1299,0)">
-                  <path
-                    d="M33.565,7.778C36.721,5.208 40.747,3.667 45.13,3.667C55.248,3.667 63.463,11.882 63.463,22C63.463,32.118 55.248,40.333 45.13,40.333C40.747,40.333 36.721,38.792 33.565,36.222C37.694,32.859 40.333,27.735 40.333,22C40.333,16.265 37.694,11.141 33.565,7.778Z"
-                    style="fill:none;"/>
-                </g>
-                <path d="M22,11L22,22L29.333,25.667" style="fill:none;fill-rule:nonzero;"/>
-              </g>
+          <svg viewBox="0 0 32 22" xmlns="http://www.w3.org/2000/svg"
+               stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="star-icon-medium">
+            <g>
+              <path
+                d="M17.18,20.02l-1.281,-0.674l1.069,-0.562l0.212,1.236Zm-2.35,-1.236l-3.83,-2.014l-6.18,3.25l1.18,-6.88l-5,-4.87l6.91,-1.01l3.09,-6.26l3.09,6.26l1.809,0.264l-5.101,0.746l5,4.87l-0.968,5.644Z"
+                style="fill:none;fill-rule:nonzero;"/>
+              <path
+                d="M20.798,1l3.09,6.26l6.91,1.01l-5,4.87l1.18,6.88l-6.18,-3.25l-6.18,3.25l1.18,-6.88l-5,-4.87l6.91,-1.01l3.09,-6.26Z"
+                style="fill:none;fill-rule:nonzero;"/>
             </g>
           </svg>
         </button>
         <button class="icon-button" [class.selected-intensity]="this.game.intensity === Intensity.High"
                 (click)="selectIntensity(Intensity.High)">
-          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 88 44" fill="none"
-               stroke-width="3.67" stroke-linecap="round" stroke-linejoin="round" class="clock-icon-large">
-            <g transform="matrix(1,0,0,1,-0.678482,0)">
-              <g transform="matrix(1,0,0,1,-0.564968,0)">
-                <circle cx="22" cy="22" r="18.333" style="fill:none;"/>
-                <path d="M22,11L22,22L29.333,25.667" style="fill:none;fill-rule:nonzero;"/>
-              </g>
-              <g transform="matrix(1,0,0,1,22.565,0)">
-                <g transform="matrix(1,0,0,1,-23.1299,0)">
-                  <path
-                    d="M33.565,7.778C36.721,5.208 40.747,3.667 45.13,3.667C55.248,3.667 63.463,11.882 63.463,22C63.463,32.118 55.248,40.333 45.13,40.333C40.747,40.333 36.721,38.792 33.565,36.222C37.694,32.859 40.333,27.735 40.333,22C40.333,16.265 37.694,11.141 33.565,7.778Z"
-                    style="fill:none;"/>
-                </g>
-                <path d="M22,11L22,22L29.333,25.667" style="fill:none;fill-rule:nonzero;"/>
-              </g>
-              <g>
-                <g transform="matrix(1,0,0,1,45.9219,0)">
-                  <path d="M22,11L22,22L29.333,25.667"
-                        style="fill:none;fill-rule:nonzero;"/>
-                </g>
-                <path
-                  d="M56.243,7.872C59.416,5.246 63.486,3.667 67.922,3.667C78.04,3.667 86.255,11.882 86.255,22C86.255,32.118 78.04,40.333 67.922,40.333C63.486,40.333 59.416,38.754 56.243,36.128C60.307,32.765 62.898,27.683 62.898,22C62.898,16.317 60.307,11.235 56.243,7.872Z"
-                  style="fill:none;"/>
-              </g>
-            </g>
+
+          <svg viewBox="0 0 41 22" xmlns="http://www.w3.org/2000/svg"
+               stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="star-icon-large">
+            <path
+              d="M17.18,20.02l-1.619,-0.851l1.351,-0.711l0.268,1.562Zm-2.969,-1.562l-3.211,-1.688l-6.18,3.25l1.18,-6.88l-5,-4.87l6.91,-1.01l3.09,-6.26l3.09,6.26l1.471,0.215l-5.438,0.795l5,4.87l-0.912,5.318Z"
+              style="fill:none;fill-rule:nonzero;"/>
+            <path
+              d="M26.303,20.02l-1.374,-0.722l1.146,-0.603l0.228,1.325Zm-2.52,-1.325l-3.66,-1.925l-6.18,3.25l1.18,-6.88l-5,-4.87l6.91,-1.01l3.09,-6.26l3.09,6.26l1.716,0.251l-5.193,0.759l5,4.87l-0.953,5.555Z"
+              style="fill:none;fill-rule:nonzero;"/>
+            <path
+              d="M29.736,1l3.09,6.26l6.91,1.01l-5,4.87l1.18,6.88l-6.18,-3.25l-6.18,3.25l1.18,-6.88l-5,-4.87l6.91,-1.01l3.09,-6.26Z"
+              style="fill:none;fill-rule:nonzero;"/>
           </svg>
         </button>
       </div>
