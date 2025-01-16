@@ -20,16 +20,6 @@ export class GamesService {
 
   searchGames(searchTerm: string): Observable<Game[]> {
     console.log('searching for games with term', searchTerm);
-    const result = this.http.get<Game[]>(`${this.backendApi}/games/search?term=${searchTerm}`);
-    result.subscribe(({
-      next: (games: Game[]) => {
-        console.log('filtered games', games)
-      },
-      error: (error) => {
-        console.error('Error loading filtered games', error); // TODO something useful with the error
-      }
-    }));
     return this.http.get<Game[]>(`${this.backendApi}/games/search?term=${searchTerm}`);
-
   }
 }

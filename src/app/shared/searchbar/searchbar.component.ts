@@ -23,7 +23,7 @@ export class SearchbarComponent {
   constructor() {
     // Set up debounce logic
     this.searchSubject.pipe(
-      debounceTime(300), // Wait 300ms after the last keystroke
+      debounceTime(500), // Wait 300ms after the last keystroke
       distinctUntilChanged(), // Emit only if the value has changed
     ).subscribe(term => {
       if (!this.manualSearch && (term.length >= 3 || term.length === 0)) { // Only emit if term has at least 3 characters
