@@ -60,7 +60,8 @@ export class GameSelectionComponent {
 
 
   onNext($event: MouseEvent) {
-    this.router.navigate(['/manualPreferences']);
+    // this.router.navigate(['/manualPreferences']); // TODO reactivate once the backend can do this
+    this.router.navigate(['/gameSuggestions']);
   }
 
   onBack($event: MouseEvent) {

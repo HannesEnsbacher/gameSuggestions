@@ -4,8 +4,8 @@ import {Router} from "@angular/router";
 import {GameCardComponent} from "../../shared/game-card/game-card.component";
 import {NgForOf} from "@angular/common";
 import {SearchbarComponent} from "../../shared/searchbar/searchbar.component";
-import {DUMMY_GAMES} from "../../shared/data/dummy-games";
 import {Game} from "../../shared/types/game.model";
+import {SuggestionService} from "../../services/backend/suggestion.service";
 
 @Component({
   selector: 'app-game-suggestions',
@@ -22,11 +22,11 @@ import {Game} from "../../shared/types/game.model";
 export class GameSuggestionsComponent {
   suggestions: Game[] = [];
 
-  constructor(private router: Router) {
+  constructor(private router: Router, private suggestionService: SuggestionService) {
   }
 
   ngOnInit() {
-    this.suggestions = DUMMY_GAMES;
+    this.loadSuggestions();
     // TODO change this to fetch suggestions based on the user's preferences from the backend
   }
 
@@ -36,10 +36,25 @@ export class GameSuggestionsComponent {
   }
 
   onBack($event: MouseEvent) {
-    this.router.navigate(['/manualPreferences']);
+    // this.router.navigate(['/manualPreferences']);// TODO reactivate once the backend can do this
+    this.router.navigate(['/gameSelection']);
   }
 
   onReload($event: MouseEvent) {
-    // TODO change this to use the same backend call as ngOnInit
+
+    this.loadSuggestions();
   }
+
+  private loadSuggestions() {
+    this.suggestionService.getSuggestions().subscribe({
+      next: (games: Game[]) => {
+        this.suggestions = games;
+      },
+      error: (error) => {
+        console.error('Error loading suggestions', error); // TODO something useful with the error
+      }
+    });
+  }
+
+
 }
