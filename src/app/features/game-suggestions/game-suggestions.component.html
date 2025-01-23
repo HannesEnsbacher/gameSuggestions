@@ -13,8 +13,11 @@
   </div>
 </div>
 
-
-<div class="gamecards-container">
+<div *ngIf="loading" class="loading-spinner">
+  <div class="spinner"></div>
+  Loading suggestions...
+</div>
+<div class="gamecards-container" *ngIf="!loading">
   <app-game-card
     class="game-card"
     *ngFor="let game of suggestions"
@@ -22,6 +25,7 @@
     selectable="true"
     detailsViewable="true">
   </app-game-card>
+
 </div>
 
 <div class="bottom-buttons">
