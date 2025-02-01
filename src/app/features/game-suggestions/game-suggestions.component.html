@@ -5,6 +5,7 @@
 <div class="tool-bar">
   <div class="action-buttons">
     <app-button
+      *ngIf="!loading"
       label="Reload"
       variant="secondary"
       size="small"
