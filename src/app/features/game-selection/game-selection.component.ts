@@ -7,6 +7,7 @@ import {NgForOf, NgIf} from "@angular/common";
 import {SearchbarComponent} from "../../shared/searchbar/searchbar.component";
 import {SelectedGamesService} from "../../services/localstorage/selected-games.service";
 import {GamesService} from "../../services/backend/games.service";
+import {ToastrService} from "ngx-toastr";
 
 @Component({
   selector: 'app-game-selection',
@@ -24,18 +25,19 @@ import {GamesService} from "../../services/backend/games.service";
 export class GameSelectionComponent {
   games: Game[] = [];
   showSelected: boolean = false;
+  couldNotLoadGames: boolean = false;
+  loading: boolean = false;
 
-  constructor(private router: Router, private selectedGamesService: SelectedGamesService, private gamesService: GamesService) {
+  constructor(private router: Router, private selectedGamesService: SelectedGamesService, private gamesService: GamesService, private toastr: ToastrService) {
   }
 
 
   ngOnInit() {
     this.loadTopGames();
 
-
   }
 
-  loadSelectedGames() {
+  visualizeSelectedGames() {
     const savedGames = this.selectedGamesService.loadSelectedGames();
 
     for (const savedGame of savedGames) {
@@ -46,20 +48,37 @@ export class GameSelectionComponent {
     }
   }
 
+  loadSelectedGames() {
+    this.loading = true;
+    this.games = this.selectedGamesService.loadSelectedGames();
+    this.loading = false;
+    if (this.games.length === 0) {
+      this.toastr.warning('No games selected');
+      this.couldNotLoadGames = true;
+    }
+  }
+
   loadTopGames() {
+    this.loading = true;
     this.gamesService.loadTopGames().subscribe({
       next: (games: Game[]) => {
         this.games = games;
-        this.loadSelectedGames();
+        this.visualizeSelectedGames();
+        this.loading = false;
       },
       error: (error) => {
-        console.error('Error loading top games', error); // TODO something useful with the error
+        this.loading = false;
+        this.toastr.error('Error loading games');
+        this.couldNotLoadGames = true;
       }
     });
   }
 
-
   onNext($event: MouseEvent) {
+    if(this.selectedGamesService.loadSelectedGames().length === 0){
+      this.toastr.warning('Please select at least one game before proceeding');
+      return;
+    }
     // this.router.navigate(['/manualPreferences']); // TODO reactivate once the backend can do this
     this.router.navigate(['/gameSuggestions']);
   }
@@ -69,7 +88,13 @@ export class GameSelectionComponent {
   }
 
   onViewSelected($event: MouseEvent) {
+    this.couldNotLoadGames = false;
     this.showSelected = !this.showSelected;
+    if (this.showSelected) {
+      this.loadSelectedGames();
+    } else {
+      this.loadTopGames();
+    }
   }
 
   getViewSelectedButtonLabel(): string {
@@ -82,17 +107,22 @@ export class GameSelectionComponent {
 
 
   onSearch(searchTerm: any) {
+    this.couldNotLoadGames = false;
+    this.loading = true;
     if (searchTerm.length === 0) {
       this.loadTopGames();
       return;
     }
     this.gamesService.searchGames(searchTerm).subscribe({
       next: (games: Game[]) => {
+        this.loading = false;
         this.games = games;
-        this.loadSelectedGames();
+        this.visualizeSelectedGames();
       },
-      error: (error) => {
-        console.error('Error loading filtered games', error); // TODO something useful with the error
+      error: (error) => { // TODO handle error
+        this.loading = false;
+        this.toastr.error('Error getting search results');
+        this.couldNotLoadGames = true;
       }
     });
     // TODO also include some sort of caching logic preferably on one of the services that will be created

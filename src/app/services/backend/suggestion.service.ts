@@ -19,7 +19,7 @@ export class SuggestionService {
   getSuggestions(): Observable<Game[]> {
     const selectedGames = this.selectedGamesService.loadSelectedGames();
     // const selectedPreferences = this.selectedPreferencesService.loadSelectedPreferences(); // TODO add this later
-    console.log('fetching suggestions for: ' + JSON.stringify(selectedGames));
+    console.log('fetching suggestions for: ' + selectedGames);
     return this.http.post<Game[]>(`${this.backendApi}/suggest`,
       {'selectedGames': selectedGames});
   }

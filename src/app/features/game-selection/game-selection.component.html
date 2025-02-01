@@ -25,7 +25,8 @@
 
 </div>
 
-<div class="gamecards-container">
+
+<div *ngIf="!couldNotLoadGames" class="gamecards-container">
   <ng-container *ngFor="let game of games">
     <app-game-card
       *ngIf="!showSelected || isSelected(game)"
@@ -35,6 +36,13 @@
     </app-game-card>
   </ng-container>
 </div>
+<div *ngIf="loading" class="loading-spinner">
+  <div class="spinner"></div>
+  Loading results...
+</div>
+<ng-container *ngIf="couldNotLoadGames">
+  <div class="content-error">No games found</div>
+</ng-container>
 
 
 <div class="bottom-buttons">

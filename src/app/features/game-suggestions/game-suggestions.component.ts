@@ -7,6 +7,7 @@ import {SearchbarComponent} from "../../shared/searchbar/searchbar.component";
 import {Game} from "../../shared/types/game.model";
 import {SuggestionService} from "../../services/backend/suggestion.service";
 import {SelectedGamesService} from "../../services/localstorage/selected-games.service";
+import {ToastrService} from "ngx-toastr";
 
 @Component({
   selector: 'app-game-suggestions',
@@ -24,8 +25,9 @@ import {SelectedGamesService} from "../../services/localstorage/selected-games.s
 export class GameSuggestionsComponent {
   suggestions: Game[] = [];
   loading: boolean = false;
+  couldNotLoadGames: boolean = false;
 
-  constructor(private router: Router, private suggestionService: SuggestionService, private selectedGamesService: SelectedGamesService) {
+  constructor(private router: Router, private suggestionService: SuggestionService, private selectedGamesService: SelectedGamesService, private toastr: ToastrService) {
   }
 
   ngOnInit() {
@@ -53,10 +55,15 @@ export class GameSuggestionsComponent {
       next: (games: Game[]) => {
         this.suggestions = games;
         this.filterOutSelected();
+        if (this.suggestions.length === 0) {
+          this.toastr.warning('No game suggestions found');
+          this.couldNotLoadGames = true;
+        }
         this.loading = false;
       },
-      error: (error) => {
-        console.error('Error loading suggestions', error); // TODO something useful with the error
+      error: (error) => { // TODO something useful with the error
+        this.toastr.error('Error loading suggestions');
+        this.couldNotLoadGames = true;
         this.loading = false;
       }
     });

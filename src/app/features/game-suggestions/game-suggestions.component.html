@@ -25,8 +25,10 @@
     selectable="true"
     detailsViewable="true">
   </app-game-card>
-
 </div>
+<ng-container *ngIf="couldNotLoadGames">
+  <div class="content-error">No games found</div>
+</ng-container>
 
 <div class="bottom-buttons">
   <app-button
