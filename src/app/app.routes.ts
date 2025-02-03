@@ -11,7 +11,7 @@ import {TermsComponent} from "./pages/terms/terms.component";
 import {ImpressumComponent} from "./pages/impressum/impressum.component";
 
 export const routes: Routes = [
-  {path: '', redirectTo: 'dev', pathMatch: 'full'},
+  {path: '', redirectTo: 'home', pathMatch: 'full'},
   {path: 'home', component: HomeComponent},
   {path: 'about', component: AboutComponent},
   {path: 'privacy', component: PrivacyComponent},
@@ -22,6 +22,5 @@ export const routes: Routes = [
   {path: 'manualPreferences', component: ManualPreferenceComponent},
   {path: 'gameSuggestions', component: GameSuggestionsComponent},
   {path: 'game-details/:id', component: GameDetailsComponent},
-  {path: 'dev', component: TestComponent},
   {path: '**', redirectTo: 'home'}
 ];

@@ -1,4 +1,4 @@
 export const environment = {
   production: true,
-  backendUrl: 'https://api.myapp.com' // Example of an API URL for production
+  backendUrl: 'https://www.findgames.app/api' // Example of an API URL for production
 };

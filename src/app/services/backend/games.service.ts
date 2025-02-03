@@ -15,6 +15,7 @@ export class GamesService {
   }
 
   loadTopGames(): Observable<Game[]> {
+    console.log(environment.backendUrl)
     return this.http.get<Game[]>(`${this.backendApi}/games/top-games`);
   }
 
