@@ -16,6 +16,6 @@ export const appConfig: ApplicationConfig = {
       timeOut: 10000,
       positionClass: 'toast-top-right',
       preventDuplicates: true
-    })
+    }),
   ]
 };

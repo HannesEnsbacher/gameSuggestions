@@ -1,6 +1,7 @@
-import { Component } from '@angular/core';
+import {Component, inject} from '@angular/core';
 import {RouterLink, RouterOutlet} from '@angular/router';
 import {CoreModule} from "./core/core.module";
+import {CookieConsentService} from "./services/cookies/cookie-consent.service";
 
 @Component({
   selector: 'app-root',
@@ -11,4 +12,10 @@ import {CoreModule} from "./core/core.module";
 })
 export class AppComponent {
   title = 'gameSuggestions';
+  private cookieConsentService = inject(CookieConsentService);
+
+
+  ngAfterViewInit(): void {
+    this.cookieConsentService.initCookieConsent();
+  }
 }
