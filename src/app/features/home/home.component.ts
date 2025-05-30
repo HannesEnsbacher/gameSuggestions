@@ -17,7 +17,6 @@ export class HomeComponent {
   }
 
   onGetStarted($event: MouseEvent) {
-    console.log('Get Started button clicked', $event)
     this.router.navigate(['/gameSelection']);
   }
 }

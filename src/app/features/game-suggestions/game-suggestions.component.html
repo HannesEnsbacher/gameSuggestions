@@ -24,7 +24,7 @@
     *ngFor="let game of suggestions"
     [game]="game"
     selectable="true"
-    detailsViewable="true">
+    detailsViewable="false">
   </app-game-card>
 </div>
 <ng-container *ngIf="couldNotLoadGames">
@@ -37,12 +37,5 @@
     variant="secondary"
     size="medium"
     (click)="onBack($event)">
-  </app-button>
-
-  <app-button
-    label="Buy me a Coffee"
-    variant="primary"
-    size="medium"
-    (click)="onDonate($event)">
   </app-button>
 </div>

@@ -15,12 +15,10 @@ export class GamesService {
   }
 
   loadTopGames(): Observable<Game[]> {
-    console.log(environment.backendUrl)
     return this.http.get<Game[]>(`${this.backendApi}/games/top-games`);
   }
 
   searchGames(searchTerm: string): Observable<Game[]> {
-    console.log('searching for games with term', searchTerm);
     return this.http.get<Game[]>(`${this.backendApi}/games/search?term=${searchTerm}`);
   }
 }

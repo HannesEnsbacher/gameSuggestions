@@ -35,11 +35,6 @@ export class GameSuggestionsComponent {
     // TODO change this to fetch suggestions based on the user's preferences from the backend
   }
 
-  onDonate($event: MouseEvent) {
-    console.log('Donate button clicked', $event)
-    // TODO: Implement onDonate with buy me a coffee link
-  }
-
   onBack($event: MouseEvent) {
     // this.router.navigate(['/manualPreferences']);// TODO reactivate once the backend can do this
     this.router.navigate(['/gameSelection']);
